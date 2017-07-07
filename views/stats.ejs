@@ -1,0 +1,37 @@
+<% if (!req.session.uid) { %>
+  <script>
+    alert('You need to log in to access this page');
+    document.location.href = '/';
+
+  </script>
+<%} else {
+  if (data) {
+    for(let i in data ) {
+      %>
+      <table>
+         <tr>
+            <th>Word to Guess</th>
+            <th>Guesses Left</th>
+            <th>Won</th>
+         </tr>
+         <tr>
+             <td><%=data[i]['wordGuessed']%></td>
+             <td><%=data[i]['guessesLeft']%></td>
+             <td><%-(data[i]['gameWon']) ? '<span style="color:green">Yes</span>':'<span style="color:red">No</span>'%></td>
+         </tr>
+      </table>
+      <%
+
+    }
+  }
+  if (err) {
+     %>
+      <%=err %>
+      <%
+  }
+
+%>
+
+<%}%>
+
+
